@@ -3,37 +3,39 @@ package sample
 import java.util.ArrayList
 
 class GraphExplorerBoardDirectionList(
-    val above: ArrayList<Int>,
-    val top_right: ArrayList<Int>,
-    val right: ArrayList<Int>,
-    val down_right: ArrayList<Int>,
-    val below: ArrayList<Int>,
-    val down_left: ArrayList<Int>,
-    val left: ArrayList<Int>,
-    val top_left: ArrayList<Int>
+    val above: List<Int>,
+    val top_right: List<Int>,
+    val right: List<Int>,
+    val down_right: List<Int>,
+    val below: List<Int>,
+    val down_left: List<Int>,
+    val left: List<Int>,
+    val top_left: List<Int>
 ) {
     fun <T : Graphable> translate(locGraph: Graph<T>): List<GraphExplorerBoardDirectionResult<T>> {
         val lst = mutableListOf<GraphExplorerBoardDirectionResult<T>>()
-        addItemsFromNodeToList(above, locGraph, lst)
-        addItemsFromNodeToList(top_right, locGraph, lst)
-        addItemsFromNodeToList(right, locGraph, lst)
-        addItemsFromNodeToList(down_right, locGraph, lst)
-        addItemsFromNodeToList(below, locGraph, lst)
-        addItemsFromNodeToList(down_left, locGraph, lst)
-        addItemsFromNodeToList(left, locGraph, lst)
-        addItemsFromNodeToList(top_left, locGraph, lst)
+        addItemsFromNodeToList(above, locGraph, lst,GraphExplorerBoardDirection.Up)
+        addItemsFromNodeToList(top_right, locGraph, lst,GraphExplorerBoardDirection.UpRight)
+        addItemsFromNodeToList(right, locGraph, lst,GraphExplorerBoardDirection.Right)
+        addItemsFromNodeToList(down_right, locGraph, lst,GraphExplorerBoardDirection.DownRight)
+        addItemsFromNodeToList(below, locGraph, lst,GraphExplorerBoardDirection.Down)
+        addItemsFromNodeToList(down_left, locGraph, lst,GraphExplorerBoardDirection.DownLeft)
+        addItemsFromNodeToList(left, locGraph, lst,GraphExplorerBoardDirection.Left)
+        addItemsFromNodeToList(top_left, locGraph, lst,GraphExplorerBoardDirection.UpLeft)
        return lst;
     }
 
     private fun <T : Graphable> addItemsFromNodeToList(
-        src: ArrayList<Int>,
+        src: List<Int>,
         locGraph: Graph<T>,
-        lst: MutableList<GraphExplorerBoardDirectionResult<T>>
+        lst: MutableList<GraphExplorerBoardDirectionResult<T>>,
+        direction: GraphExplorerBoardDirection
     ) {
         for (i in src) {
             val players = locGraph.get_nodes_at(i);
+
             for (j in players) {
-                lst.add(GraphExplorerBoardDirectionResult(GraphExplorerBoardDirection.Up, j))
+                lst.add(GraphExplorerBoardDirectionResult(direction, j))
             }
         }
     }

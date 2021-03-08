@@ -9,8 +9,9 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         var end = i;
         val LastRowTop = squareMax
 
-        while (end-- >0 && start <= LastRowTop) {
+        while (end-- >0 ) {
             start += squareSize;
+            if(start >LastRowTop) break;
             indexes.add(start)
         }
 
@@ -106,8 +107,9 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         var end = i;
         val lastrowbottom = (squareSize - (squareSize - (start % squareSize)))
 
-        while (end-- >0 && start > lastrowbottom) {
+        while (end-- >0  ) {
             start -= squareSize;
+            if(start < lastrowbottom) break;
             indexes.add(start)
         }
 
