@@ -10,6 +10,7 @@ class ShoutCommand(private val activePlayer: Player, private val  playerMessage:
         val playerLocationGraph = world.playerLocationGraph;
 
         val nearBy = graphBoard.get_range(activePlayer.ident.blockId, 1);
+
         val playersNearby = nearBy.translate(playerLocationGraph); //translate keys to graph edges with direction
         val commandResponse = ShoutCommandResponse()
         for (nearby_player in playersNearby) {

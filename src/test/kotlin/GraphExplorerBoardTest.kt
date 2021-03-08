@@ -1,6 +1,8 @@
 import org.junit.Assert
 import org.junit.Test
 import sample.GraphExplorerBoard
+import sample.Identity
+import sample.Player
 
 class GraphExplorerBoardTest {
 
@@ -41,6 +43,20 @@ class GraphExplorerBoardTest {
     }
 
     @Test
+    fun testGet_range_test() {
+        val world = World()
+        val activePlayer = Player(Identity(0))
+        world.add_player_to_world(activePlayer)
+        world.add_player_to_world(Player(Identity(1, 1)))
+        world.add_player_to_world(Player(Identity(2, 6)))
+        val graphBoard = world.graphBoard;
+        val playerLocationGraph = world.playerLocationGraph;
+        val nearBy = graphBoard.get_range(activePlayer.ident.blockId, 1);
+        val playersNearby = nearBy.translate(playerLocationGraph); //translate keys to graph edges with direction
+
+    }
+
+    @Test
     fun testGet_above_range() {
 
         val handler =
@@ -58,8 +74,13 @@ class GraphExplorerBoardTest {
     fun testGet_up_right_range() {
 
         val handler =
-            { board: GraphExplorerBoard, startPosition: Int, range: Int -> board.get_up_right_range(startPosition, range) }
-        generate_range_test(6, 3, 5, 3, handler, arrayOf(10,15));
+            { board: GraphExplorerBoard, startPosition: Int, range: Int ->
+                board.get_up_right_range(
+                    startPosition,
+                    range
+                )
+            }
+        generate_range_test(6, 3, 5, 3, handler, arrayOf(10, 15));
         generate_range_test(6, 3, 1, 3, handler, arrayOf(6));
 
     }
