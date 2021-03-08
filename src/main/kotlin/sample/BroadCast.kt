@@ -1,5 +1,5 @@
 package sample
 
-class BroadCast(s: String) {
+class BroadCast(val player: Player, val message: String) {
 
 }

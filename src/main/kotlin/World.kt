@@ -1,5 +1,4 @@
 import sample.*
-import java.lang.Error
 
 class Inventory(override val ident: Identity, val p1: Player) : Graphable {
 
@@ -9,83 +8,12 @@ class InventorySlot(override val ident: Identity, val inventory: Inventory) : Gr
 
 }
 
-var IdCounter = 0;
 
-@Synchronized
-fun get_next_global_id(): Int {
-
-    return IdCounter++;
+interface CommandResponse {
+    val broadCasts: ArrayList<BroadCast>
+    fun addBroadcast(ToPlayer: Player, FromPlayer: Player, broadcast: String);
 }
 
-interface CommandRequest {
-    fun handle_command(active_player: Player, message: PlayerMessage, world: World)  : CommandRequest;
-}
-class CommandResult(activePlayer: Player, nearbyPlayer: GraphExplorerBoardDirectionResult<Player>) {
-
-}
-class ShoutCommand : CommandRequest {
-    override fun handle_command(active_player: Player, message: PlayerMessage, world: World)  : List<CommandRequest>{
-        val playerGraph = world.playerGraph;
-        val graphBoard = world.graphBoard;
-        val playerLocationGraph = world.playerLocationGraph;
-
-        val nearBy = graphBoard.get_range(active_player.ident.blockId, 1);
-        val players_nearby = nearBy.translate(playerLocationGraph); //translate keys to graph edges with direction
-
-        for (nearby_player in players_nearby) {
-            when (nearby_player.location) {
-                GraphExplorerBoardDirection.Up -> broadcastShoutUp(active_player, nearby_player, message);
-                GraphExplorerBoardDirection.Down -> TODO()
-                GraphExplorerBoardDirection.UpRight -> TODO()
-                GraphExplorerBoardDirection.Right -> TODO()
-                GraphExplorerBoardDirection.Left -> TODO()
-                GraphExplorerBoardDirection.DownLeft -> TODO()
-                GraphExplorerBoardDirection.DownRight -> TODO()
-                GraphExplorerBoardDirection.UpLeft -> TODO()
-            }
-        }
-    }
-
-    private fun broadcastShoutUp(
-        activePlayer: Player,
-        nearbyPlayer: GraphExplorerBoardDirectionResult<Player>,
-        message: PlayerMessage
-    ) : CommandResult{
-        nearbyPlayer.Item.playerBroadcastHandler.broadcastShoutFromBelow(activePlayer,message.Message)
-        return CommandResult(activePlayer,nearbyPlayer);
-
-    }
-
-}
-
-class TickHandler(val world: World) {
-    fun tick(tickQueue: ArrayList<PlayerMessage>) {
-        if (tickQueue.size == 0) return;
-
-        val commands_by_time = tickQueue.sortedBy { a -> a.commandTimestamp }
-        for (command in commands_by_time) {
-            handleCommand(command)
-        }
-    }
-
-    private fun handleCommand(message: PlayerMessage) : CommandRequest{
-
-        val playerGraph = world.playerGraph
-        val active_player = playerGraph.get(Identity(message.discordID));
-        if (active_player == null) {
-            println("Can not find player");
-            throw Error("Player could not be found")
-        }
-        when (message.Type) {
-            PlayerCommandType.Shout -> ShoutCommand(active_player, message)
-            PlayerCommandType.Move -> TODO()
-            PlayerCommandType.Hide -> TODO()
-        }
-    }
-
-
-
-}
 
 class World() {
     val playerLocationGraph: Graph<Player>

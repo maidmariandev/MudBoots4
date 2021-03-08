@@ -1,4 +1,4 @@
-class PlayerMessage(val Type: PlayerCommandType, val discordID: Long, val commandTimestamp: Int, val Message: String) {
+class PlayerMessage(val Type: PlayerCommandType, val discordID: Long, val commandTimestamp: Int) {
 
 
 

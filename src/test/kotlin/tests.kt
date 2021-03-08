@@ -1,26 +1,8 @@
 import org.junit.Assert
 import org.junit.Test
+import sample.GraphExplorerBoard
 
-import sample.*
 
-class WorldValidatorTests {
-    @Test
-    fun testEmptyTick() {
-        val wrld: World = World()
-        wrld.tick()
-
-    }
-
-    @Test
-    fun testSingleTick() {
-        val wrld: World = World()
-        wrld.add_player_to_world(Player(Identity(0)))
-        wrld.add_player_to_world(Player(Identity(1, 1)))
-        wrld.handle_player_command(PlayerMessage(PlayerCommandType.Move, 0, 0,));0
-        wrld.tick()
-
-    }
-}
 
 class GraphExplorerBoardTest {
     @Test
