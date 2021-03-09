@@ -14,9 +14,9 @@ class ShoutCommandTests {
         assertEquals(executedCommands.size,1)
         val cmd = executedCommands[0];
         assertEquals(cmd.broadCasts.size,1)
-        val bcast = cmd.broadCasts[0];
-        assertEquals("You hear a shout from the east", bcast.message)
-        assertEquals(1, bcast.player.who._id)
+        val beast = cmd.broadCasts[0];
+        assertEquals("You hear a shout from the east", beast.message)
+        assertEquals(1, beast.player.who._id)
     }
     @Test
     fun testMultiShout() {
