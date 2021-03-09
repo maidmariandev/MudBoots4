@@ -1,8 +1,6 @@
 import org.junit.Assert
 import org.junit.Test
-import sample.GraphExplorerBoard
-import sample.Identity
-import sample.Player
+
 
 class GraphExplorerBoardTest {
 
@@ -44,7 +42,13 @@ class GraphExplorerBoardTest {
 
     @Test
     fun testGet_range_test() {
-        val world = World()
+        val tstData = worldTestsGenerator();
+
+        val world = World(tstData.
+        playerLocationGraph,
+        tstData. playerGraph,
+        tstData. inventoryGraph,
+            tstData.graphBoard )
         val activePlayer = Player(Identity(0))
         world.add_player_to_world(activePlayer)
         world.add_player_to_world(Player(Identity(1, 1)))

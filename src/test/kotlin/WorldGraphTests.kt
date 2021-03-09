@@ -1,6 +1,5 @@
 import org.junit.Test
-import sample.Identity
-import sample.Player
+
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -8,7 +7,13 @@ import kotlin.test.assertNull
 class WorldGraphTests{
     @Test
     fun testGetPlayerByDiscordId(){
-        val world = World()
+        val tstData = worldTestsGenerator();
+
+        val world = World(tstData.
+        playerLocationGraph,
+            tstData. playerGraph,
+            tstData. inventoryGraph,
+            tstData.graphBoard )
         world.add_player_to_world(Player(Identity(0)))
         world.add_player_to_world(Player(Identity(1, 1)))
         world.add_player_to_world(Player(Identity(2, 6)))

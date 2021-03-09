@@ -1,12 +1,16 @@
 import org.junit.Test
-import sample.Identity
-import sample.Player
 import kotlin.test.assertEquals
 
 class ShoutCommandTests {
     @Test
     fun testSingleShout() {
-        val world = World()
+        val tstData = worldTestsGenerator();
+
+        val world = World(tstData.
+        playerLocationGraph,
+            tstData. playerGraph,
+            tstData. inventoryGraph,
+            tstData.graphBoard )
         val t = TickHandler(world);
         world.add_player_to_world(Player(Identity(0)))
         world.add_player_to_world(Player(Identity(1, 1)))
@@ -20,7 +24,13 @@ class ShoutCommandTests {
     }
     @Test
     fun testMultiShout() {
-        val world = World()
+        val tstData = worldTestsGenerator();
+
+        val world = World(tstData.
+        playerLocationGraph,
+            tstData. playerGraph,
+            tstData. inventoryGraph,
+            tstData.graphBoard )
         val t = TickHandler(world);
         world.add_player_to_world(Player(Identity(0)))
         world.add_player_to_world(Player(Identity(1, 1)))
