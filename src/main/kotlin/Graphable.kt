@@ -1,7 +1,6 @@
-package sample
 
 interface Graphable {
-    val ident: Identity
+    val who: Identity
 
 
 }

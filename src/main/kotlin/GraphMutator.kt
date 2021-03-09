@@ -1,6 +1,6 @@
-package sample
+
 
 interface GraphMutator<T : Graphable> {
-    var GNode: GraphNode<T>;
+    var graphNode: GraphNode<T>;
     abstract fun insert(t: T): T;
 }

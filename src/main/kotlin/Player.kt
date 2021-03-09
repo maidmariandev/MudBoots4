@@ -1,7 +1,6 @@
-package sample
 
 
-class Player(override val ident: Identity) : Graphable {
+class Player(override val who: Identity) : Graphable {
 
 
 

@@ -1,10 +1,9 @@
-import sample.*
 
-class Inventory(override val ident: Identity, val p1: Player) : Graphable {
+class Inventory(override val who: Identity, val p1: Player) : Graphable {
 
 }
 
-class InventorySlot(override val ident: Identity, val inventory: Inventory) : Graphable {
+class InventorySlot(override val who: Identity, val inventory: Inventory) : Graphable {
 
 }
 
@@ -31,10 +30,10 @@ class World() {
         val InsertKeyForPlayerLocation: (obj: Identity) -> Int = { i ->
             i.blockId
         }
-        playerGraph = Graph(MutableList(8000) { i -> create_list(i) }, InsertKeyForPlayers, null, null);
-        inventoryGraph = Graph(MutableList(8000) { i -> create_list(i) }, InsertKeyInv, null, null);
+        playerGraph = Graph(MutableList(8000) { i -> createList(i) }, InsertKeyForPlayers, null, null);
+        inventoryGraph = Graph(MutableList(8000) { i -> createList(i) }, InsertKeyInv, null, null);
         playerLocationGraph =
-            Graph(MutableList(8000) { i -> create_list(i) }, InsertKeyForPlayerLocation, null, null);
+            Graph(MutableList(8000) { i -> createList(i) }, InsertKeyForPlayerLocation, null, null);
         graphBoard = GraphExplorerBoard(12, 12);
     }
 

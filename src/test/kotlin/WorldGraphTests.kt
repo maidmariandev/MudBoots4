@@ -16,17 +16,17 @@ class WorldGraphTests{
         val playerGraph = world.playerGraph
         val activePlayer = playerGraph.get(Identity(0));
         assertNotNull(activePlayer);
-        assertEquals(activePlayer.ident._id ,0);
+        assertEquals(activePlayer.who._id ,0);
 
 
         val activePlayer2 = playerGraph.get(Identity(1));
         assertNotNull(activePlayer2);
-        assertEquals(activePlayer2.ident._id ,1);
+        assertEquals(activePlayer2.who._id ,1);
 
 
         val activePlayer3 = playerGraph.get(Identity(2));
         assertNotNull(activePlayer3);
-        assertEquals(activePlayer3.ident._id ,2);
+        assertEquals(activePlayer3.who._id ,2);
 
         val activeplayerNul  = playerGraph.get(Identity(12));
         assertNull(activeplayerNul);

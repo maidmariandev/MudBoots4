@@ -1,8 +1,8 @@
-package sample
+
 
 class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
-    fun get_above_range(indx: Int, i: Int): ArrayList<Int> {
+    fun getAboveRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
         var start = indx;
@@ -17,7 +17,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
         return indexes;
     }
-    fun get_up_left_range(indx: Int, i: Int): ArrayList<Int> {
+    fun getUpLeftRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
         var end = i;
@@ -39,7 +39,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
         return indexes;
     }
-    fun get_down_left_range(indx: Int, i: Int): ArrayList<Int> {
+    fun getDownLeftRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
         var end = i;
@@ -62,7 +62,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
         return indexes;
     }
-    fun get_up_right_range(indx: Int, i: Int): ArrayList<Int> {
+    fun getUpRightRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
         var end = i;
@@ -85,7 +85,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         return indexes;
     }
 
-    fun get_right_range(indx: Int, i: Int): ArrayList<Int> {
+    fun getRightRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
 
@@ -100,7 +100,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         return indexes;
     }
 
-    fun get_down_range(indx: Int, i: Int): ArrayList<Int> {
+    fun getDownRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
         var start = indx;
@@ -116,7 +116,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         return indexes;
     }
 
-    fun get_down_right_range(indx: Int, i: Int): ArrayList<Int> {
+    fun getDownRightRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
         var start = indx;
@@ -139,7 +139,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
         return indexes;
     }
-    fun get_left_range(indx: Int, i: Int): ArrayList<Int> {
+    fun getLeftRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
 
@@ -155,18 +155,17 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
     }
 
 
-    val squareMax = (squareSize * maxRows) - 1;
-    val TopSquareStart = ((squareSize * maxRows) - 1) - squareSize;
+    private val squareMax = (squareSize * maxRows) - 1;
 
-    fun get_range(center: Int, i: Int): GraphExplorerBoardDirectionList {
-        val above = get_above_range(center, i);
-        val left = get_left_range(center, i);
-        val right = get_right_range(center, i);
-        val topright = get_up_right_range(center, i);
-        val downright = get_down_right_range(center,i);
-        val below = get_down_range(center,i);
-        val downleft = get_down_left_range(center,i);
-        val topleft = get_up_left_range(center,i);
+    fun getRange(center: Int, i: Int):  GraphExplorerBoardDirectionList {
+        val above = getAboveRange(center, i);
+        val left = getLeftRange(center, i);
+        val right = getRightRange(center, i);
+        val topright = getUpRightRange(center, i);
+        val downright = getDownRightRange(center,i);
+        val below = getDownRange(center,i);
+        val downleft = getDownLeftRange(center,i);
+        val topleft = getUpLeftRange(center,i);
         return GraphExplorerBoardDirectionList(above,topright,right,downright,below,downleft,left,topleft);
     }
 

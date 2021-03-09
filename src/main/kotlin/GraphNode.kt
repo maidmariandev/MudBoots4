@@ -1,16 +1,15 @@
-package sample
 
-class GraphNode<T : Graphable>(val Edges: MutableList<T>, private val Inserter : GraphMutator<T>) {
+class GraphNode<T : Graphable>(val Edges: MutableList<T>, private val insertMutator : GraphMutator<T>) {
 
     init {
-        Inserter.GNode = this;
+        insertMutator.graphNode = this;
     }
 
     fun insert(t:T) : T{
-        return Inserter.insert(t);
+        return insertMutator.insert(t);
     }
     fun get(ident :Identity) : T?{
-        return Edges.firstOrNull { it.ident._id == ident._id }
+        return Edges.firstOrNull { it.who._id == ident._id }
     }
 
 

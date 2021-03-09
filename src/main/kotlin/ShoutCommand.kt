@@ -1,6 +1,4 @@
-import sample.GraphExplorerBoardDirection
-import sample.GraphExplorerBoardDirectionResult
-import sample.Player
+
 
 class ShoutCommand(private val activePlayer: Player, private val  playerMessage: PlayerMessage, private val  world: World) : CommandRequest {
 
@@ -9,12 +7,12 @@ class ShoutCommand(private val activePlayer: Player, private val  playerMessage:
         val graphBoard = world.graphBoard;
         val playerLocationGraph = world.playerLocationGraph;
 
-        val nearBy = graphBoard.get_range(activePlayer.ident.blockId, 1);
+        val nearBy = graphBoard.getRange(activePlayer.who.blockId, 1);
 
         val playersNearby = nearBy.translate(playerLocationGraph); //translate keys to graph edges with direction
         val commandResponse = ShoutCommandResponse()
         for (nearby_player in playersNearby) {
-            commandResponse.addBroadcast(nearby_player.Item,activePlayer,"You hear a shout from the " + invertDirection(nearby_player.location));
+            commandResponse.addBroadcast(nearby_player.item,activePlayer,"You hear a shout from the " + invertDirection(nearby_player.location));
 
         }
         return commandResponse;

@@ -1,6 +1,4 @@
-package sample
 
-import java.util.ArrayList
 
 
 class Graph<T : Graphable>(
@@ -15,7 +13,7 @@ class Graph<T : Graphable>(
 
 
     fun add(t: T): T {
-        val key = InsertKey(t.ident);
+        val key = InsertKey(t.who);
         val Node = Nodes[key];
         return if (Add_Item == null) {
             Node.insert(t);
@@ -25,8 +23,8 @@ class Graph<T : Graphable>(
         }
     }
 
-    fun get_ids(i: Int): List<Long> {
-        return Nodes[i].Edges.map { i -> i.ident._id };
+    fun getIds(i: Int): List<Long> {
+        return Nodes[i].Edges.map { i -> i.who._id };
     }
 
     fun get(identId: Identity): T? {
@@ -36,7 +34,7 @@ class Graph<T : Graphable>(
 
     }
 
-    fun get_nodes_at(range: Int): List<T> {
+    fun getNodesAt(range: Int): List<T> {
         return Nodes[range].Edges;
 
 

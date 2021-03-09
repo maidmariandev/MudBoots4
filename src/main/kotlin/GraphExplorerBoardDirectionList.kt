@@ -1,16 +1,12 @@
-package sample
-
-import java.util.ArrayList
-
 class GraphExplorerBoardDirectionList(
-    val above: List<Int>,
-    val top_right: List<Int>,
-    val right: List<Int>,
-    val down_right: List<Int>,
-    val below: List<Int>,
-    val down_left: List<Int>,
-    val left: List<Int>,
-    val top_left: List<Int>
+    private val above: List<Int>,
+    private val top_right: List<Int>,
+    private val right: List<Int>,
+    private val down_right: List<Int>,
+    private val below: List<Int>,
+    private val down_left: List<Int>,
+    private val left: List<Int>,
+    private val top_left: List<Int>
 ) {
     fun <T : Graphable> translate(locGraph: Graph<T>): List<GraphExplorerBoardDirectionResult<T>> {
         val lst = mutableListOf<GraphExplorerBoardDirectionResult<T>>()
@@ -32,7 +28,7 @@ class GraphExplorerBoardDirectionList(
         direction: GraphExplorerBoardDirection
     ) {
         for (i in src) {
-            val players = locGraph.get_nodes_at(i);
+            val players = locGraph.getNodesAt(i);
 
             for (j in players) {
                 lst.add(GraphExplorerBoardDirectionResult(direction, j))
@@ -53,6 +49,6 @@ enum class GraphExplorerBoardDirection {
     UpLeft
 }
 
-class GraphExplorerBoardDirectionResult<T : Graphable>(val location: GraphExplorerBoardDirection, val Item: T) {
+class GraphExplorerBoardDirectionResult<T : Graphable>(val location: GraphExplorerBoardDirection, val item: T) {
 
 }

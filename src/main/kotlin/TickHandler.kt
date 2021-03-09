@@ -1,4 +1,3 @@
-import sample.Identity
 
 class TickHandler(val world: World) {
     fun tick(tickQueue: List<PlayerMessage>) : List<CommandResponse> {
