@@ -44,8 +44,7 @@ class GraphExplorerBoardTest {
     fun testGet_range_test() {
         val tstData = worldTestsGenerator();
 
-        val world = World(tstData.
-        playerLocationGraph,
+        val world = World( tstData.playerLocationGraph,
         tstData. playerGraph,
         tstData. inventoryGraph,
             tstData.graphBoard )

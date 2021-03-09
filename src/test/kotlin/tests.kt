@@ -11,19 +11,19 @@ fun worldTestsGenerator(): TestData {
     val InsertKeyForPlayerLocation: (obj: Identity) -> Int = { i ->
         i.blockId
     }
-    val  playerGraph = Graph(MutableList(8000) { i -> createList(i) }, InsertKeyForPlayers, null, null);
-    val  inventoryGraph = Graph(MutableList(8000) { i -> createList(i) }, InsertKeyInv, null, null);
+    val  playerGraph = Graph<Player>(MutableList(8000) { i -> createList(i) }, InsertKeyForPlayers, null, null);
+    val  inventoryGraph = Graph<Inventory>(MutableList(8000) { i -> createList(i) }, InsertKeyInv, null, null);
     val  playerLocationGraph =
-        Graph(MutableList(8000) { i -> createList(i) }, InsertKeyForPlayerLocation, null, null);
+        Graph<Player>(MutableList(8000) { i -> createList(i) }, InsertKeyForPlayerLocation, null, null);
     val  graphBoard = GraphExplorerBoard(12, 12);
     return TestData(playerGraph,inventoryGraph,graphBoard,playerLocationGraph)
 }
 
 class TestData(
-    val playerGraph: Graph<Graphable>,
-    val inventoryGraph: Graph<Graphable>,
+    val playerGraph: Graph<Player>,
+    val inventoryGraph: Graph<Inventory>,
     val graphBoard: GraphExplorerBoard,
-    val playerLocationGraph: Graph<Graphable>
+    val playerLocationGraph: Graph<Player>
 ) {
 
 }

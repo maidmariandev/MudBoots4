@@ -14,9 +14,9 @@ interface CommandResponse {
 }
 
 
-class World( var playerLocationGraph: Graph<Graphable>,
-             var playerGraph: Graph<Graphable>,
-             private var inventoryGraph: Graph<Graphable>,
+class World( var playerLocationGraph: Graph<Player>,
+             var playerGraph: Graph<Player>,
+             private var inventoryGraph: Graph<Inventory>,
              var graphBoard: GraphExplorerBoard) {
 //these will have to be moved later but this is easier for tests -- default sample world
     init {
