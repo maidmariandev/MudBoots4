@@ -1,3 +1,6 @@
+import Graph.GraphExplorerBoard
+import Graph.Identity
+import Graph.Player.Player
 import org.junit.Assert
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-
+package Graph
 
 class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
@@ -157,7 +157,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
     private val squareMax = (squareSize * maxRows) - 1;
 
-    fun getRange(center: Int, i: Int):  GraphExplorerBoardDirectionList {
+    fun getRange(center: Int, i: Int): GraphExplorerBoardDirectionList {
         val above = getAboveRange(center, i);
         val left = getLeftRange(center, i);
         val right = getRightRange(center, i);

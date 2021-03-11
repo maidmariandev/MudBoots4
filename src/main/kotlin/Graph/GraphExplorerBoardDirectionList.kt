@@ -1,3 +1,5 @@
+package Graph
+
 class GraphExplorerBoardDirectionList(
     private val above: List<Int>,
     private val top_right: List<Int>,
@@ -10,14 +12,14 @@ class GraphExplorerBoardDirectionList(
 ) {
     fun <T : Graphable> translate(locGraph: Graph<T>): List<GraphExplorerBoardDirectionResult<T>> {
         val lst = mutableListOf<GraphExplorerBoardDirectionResult<T>>()
-        addItemsFromNodeToList(above, locGraph, lst,GraphExplorerBoardDirection.Up)
-        addItemsFromNodeToList(top_right, locGraph, lst,GraphExplorerBoardDirection.UpRight)
-        addItemsFromNodeToList(right, locGraph, lst,GraphExplorerBoardDirection.Right)
-        addItemsFromNodeToList(down_right, locGraph, lst,GraphExplorerBoardDirection.DownRight)
-        addItemsFromNodeToList(below, locGraph, lst,GraphExplorerBoardDirection.Down)
-        addItemsFromNodeToList(down_left, locGraph, lst,GraphExplorerBoardDirection.DownLeft)
-        addItemsFromNodeToList(left, locGraph, lst,GraphExplorerBoardDirection.Left)
-        addItemsFromNodeToList(top_left, locGraph, lst,GraphExplorerBoardDirection.UpLeft)
+        addItemsFromNodeToList(above, locGraph, lst, GraphExplorerBoardDirection.Up)
+        addItemsFromNodeToList(top_right, locGraph, lst, GraphExplorerBoardDirection.UpRight)
+        addItemsFromNodeToList(right, locGraph, lst, GraphExplorerBoardDirection.Right)
+        addItemsFromNodeToList(down_right, locGraph, lst, GraphExplorerBoardDirection.DownRight)
+        addItemsFromNodeToList(below, locGraph, lst, GraphExplorerBoardDirection.Down)
+        addItemsFromNodeToList(down_left, locGraph, lst, GraphExplorerBoardDirection.DownLeft)
+        addItemsFromNodeToList(left, locGraph, lst, GraphExplorerBoardDirection.Left)
+        addItemsFromNodeToList(top_left, locGraph, lst, GraphExplorerBoardDirection.UpLeft)
        return lst;
     }
 

@@ -1,3 +1,5 @@
+import Graph.Identity
+import Graph.Player.Player
 import org.junit.Test
 import kotlin.test.assertEquals
 

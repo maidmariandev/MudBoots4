@@ -1,6 +1,6 @@
-
+package Graph
 class GraphNodeSortedMutator<T : Graphable>() : GraphMutator<T> {
-    override lateinit var graphNode : GraphNode<T> ;
+    override lateinit var graphNode : GraphNode<T>;
     private var startIndexValue: Long = 0;
     private var middleIndexValue: Long = 0;
     private var endIndexValue: Long = 0;

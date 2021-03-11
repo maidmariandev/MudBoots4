@@ -1,3 +1,8 @@
+import Graph.Graph
+import Graph.GraphExplorerBoard
+import Graph.Graphable
+import Graph.Identity
+import Graph.Player.Player
 
 class Inventory(override val who: Identity, val p1: Player) : Graphable {
 
@@ -14,10 +19,11 @@ interface CommandResponse {
 }
 
 
-class World( var playerLocationGraph: Graph<Player>,
-             var playerGraph: Graph<Player>,
-             private var inventoryGraph: Graph<Inventory>,
-             var graphBoard: GraphExplorerBoard) {
+class World(var playerLocationGraph: Graph<Player>,
+            var playerGraph: Graph<Player>,
+            private var inventoryGraph: Graph<Inventory>,
+            var graphBoard: GraphExplorerBoard
+) {
 //these will have to be moved later but this is easier for tests -- default sample world
     init {
 

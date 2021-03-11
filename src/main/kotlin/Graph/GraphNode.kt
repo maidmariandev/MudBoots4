@@ -1,3 +1,4 @@
+package Graph
 
 class GraphNode<T : Graphable>(val Edges: MutableList<T>, private val insertMutator : GraphMutator<T>) {
 
@@ -8,7 +9,7 @@ class GraphNode<T : Graphable>(val Edges: MutableList<T>, private val insertMuta
     fun insert(t:T) : T{
         return insertMutator.insert(t);
     }
-    fun get(ident :Identity) : T?{
+    fun get(ident : Identity) : T?{
         return Edges.firstOrNull { it.who._id == ident._id }
     }
 

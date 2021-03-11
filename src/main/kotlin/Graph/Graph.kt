@@ -1,8 +1,7 @@
-
-
+package Graph
 
 class Graph<T : Graphable>(
-    private val Nodes: MutableList<GraphNode<T>>,
+    private val Nodes: List<GraphNode<T>>,
     val InsertKey: (obj: Identity) -> Int,
     private val Add_Item: ((obj: T, graph: Graph<T>) -> T)?,
     private val Remove_Item: ((obj: T, graph: Graph<T>) -> T)?
@@ -11,6 +10,7 @@ class Graph<T : Graphable>(
 
     }
 
+    fun flatten(): List<T> = Nodes.flatMap { i -> i.Edges }
 
     fun add(t: T): T {
         val key = InsertKey(t.who);

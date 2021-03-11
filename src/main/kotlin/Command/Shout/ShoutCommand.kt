@@ -1,6 +1,14 @@
+package Command.Shout
 
+import Command.CommandRequest
+import CommandResponse
+import Graph.GraphExplorerBoardDirection
+import Graph.Player.Player
+import PlayerMessage
+import World
 
-class ShoutCommand(private val activePlayer: Player, private val  playerMessage: PlayerMessage, private val  world: World) : CommandRequest {
+class ShoutCommand(private val activePlayer: Player, private val  playerMessage: PlayerMessage, private val  world: World) :
+    CommandRequest {
 
     override fun handleCommand()  : CommandResponse {
         val playerGraph = world.playerGraph;
