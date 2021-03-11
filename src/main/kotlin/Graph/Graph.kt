@@ -2,7 +2,7 @@ package Graph
 
 class Graph<T : Graphable>(
     private val Nodes: List<GraphNode<T>>,
-    val InsertKey: (obj: Identity) -> Int,
+    val InsertKey: (obj: GraphIdentity) -> Int,
     private val Add_Item: ((obj: T, graph: Graph<T>) -> T)?,
     private val Remove_Item: ((obj: T, graph: Graph<T>) -> T)?
 ) {
@@ -27,7 +27,7 @@ class Graph<T : Graphable>(
         return Nodes[i].Edges.map { i -> i.who._id };
     }
 
-    fun get(identId: Identity): T? {
+    fun get(identId: GraphIdentity): T? {
         val key = InsertKey(identId);
         val graphNode = Nodes[key];
         return graphNode.get(identId);

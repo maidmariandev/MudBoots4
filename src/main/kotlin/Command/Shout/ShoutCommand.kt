@@ -2,12 +2,12 @@ package Command.Shout
 
 import Command.CommandRequest
 import CommandResponse
-import Graph.GraphExplorerBoardDirection
+import Graph.Explorer.SquareBoard.GraphExplorerBoardDirection
 import Graph.Player.Player
-import PlayerMessage
+import Ticks.TickMessage
 import World
 
-class ShoutCommand(private val activePlayer: Player, private val  playerMessage: PlayerMessage, private val  world: World) :
+class ShoutCommand(private val activePlayer: Player, private val  tickMessage: TickMessage, private val  world: World) :
     CommandRequest {
 
     override fun handleCommand()  : CommandResponse {

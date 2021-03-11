@@ -1,5 +1,5 @@
 import Graph.GraphNode
-import Graph.GraphNodeSortedMutator
+import Graph.Mutators.Sorted.GraphNodeSortedMutator
 import Graph.Graphable
 
 fun main(args: Array<String>) {

@@ -1,9 +1,9 @@
 package Graph.Player
 
 import Graph.Graphable
-import Graph.Identity
+import Graph.GraphIdentity
 
-class Player(override val who: Identity) : Graphable {
+class Player(override val who: GraphIdentity) : Graphable {
 
 
 

@@ -1,3 +1,4 @@
+import Ticks.TickHandler
 import org.junit.Test
 
 class WorldValidatorTests {

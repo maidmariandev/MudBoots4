@@ -2,10 +2,10 @@ package WorldGen
 
 import Graph.Graph
 import Graph.Graphable
-import Graph.Identity
+import Graph.GraphIdentity
 
 
-class MazeSquare(override val who: Identity, private val maze: Graph<MazeSquare>) : Graphable {
+class MazeSquare(override val who: GraphIdentity, private val maze: Graph<MazeSquare>) : Graphable {
 
 
 

@@ -1,4 +1,7 @@
-package Graph
+package Graph.Explorer.SquareBoard
+
+import Graph.Graph
+import Graph.Graphable
 
 class GraphExplorerBoardDirectionList(
     private val above: List<Int>,

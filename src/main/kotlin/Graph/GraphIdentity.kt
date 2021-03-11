@@ -1,6 +1,6 @@
 package Graph
 
-class Identity(val _id: Long, private var _blockId: Int = 0, private var _worldId: Int = 0) {
+class GraphIdentity(val _id: Long, private var _blockId: Int = 0, private var _worldId: Int = 0) {
 
     val blockId: Int get() = _blockId;
 

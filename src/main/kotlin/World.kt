@@ -1,14 +1,14 @@
 import Graph.Graph
-import Graph.GraphExplorerBoard
+import Graph.Explorer.SquareBoard.GraphExplorerBoard
 import Graph.Graphable
-import Graph.Identity
+import Graph.GraphIdentity
 import Graph.Player.Player
 
-class Inventory(override val who: Identity, val p1: Player) : Graphable {
+class Inventory(override val who: GraphIdentity, val p1: Player) : Graphable {
 
 }
 
-class InventorySlot(override val who: Identity, val inventory: Inventory) : Graphable {
+class InventorySlot(override val who: GraphIdentity, val inventory: Inventory) : Graphable {
 
 }
 
@@ -39,8 +39,8 @@ class World(var playerLocationGraph: Graph<Player>,
 
     fun create_player() {
         val discordid = 445251792226484235
-        val p1 = Player(Identity(discordid));
-        val p1Inventory = Inventory(Identity(discordid), p1)
+        val p1 = Player(GraphIdentity(discordid));
+        val p1Inventory = Inventory(GraphIdentity(discordid), p1)
         playerGraph.add(p1);
         inventoryGraph.add(p1Inventory);
     }

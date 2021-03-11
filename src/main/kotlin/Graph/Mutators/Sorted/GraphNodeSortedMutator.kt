@@ -1,4 +1,9 @@
-package Graph
+package Graph.Mutators.Sorted
+
+import Graph.GraphNode
+import Graph.Graphable
+import Graph.Mutators.GraphMutator
+
 class GraphNodeSortedMutator<T : Graphable>() : GraphMutator<T> {
     override lateinit var graphNode : GraphNode<T>;
     private var startIndexValue: Long = 0;

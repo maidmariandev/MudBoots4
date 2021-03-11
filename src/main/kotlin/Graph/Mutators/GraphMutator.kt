@@ -1,4 +1,7 @@
-package Graph
+package Graph.Mutators
+
+import Graph.GraphNode
+import Graph.Graphable
 
 interface GraphMutator<T : Graphable> {
     var graphNode: GraphNode<T>;

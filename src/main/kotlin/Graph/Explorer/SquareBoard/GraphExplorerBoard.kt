@@ -1,4 +1,4 @@
-package Graph
+package Graph.Explorer.SquareBoard
 
 class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 

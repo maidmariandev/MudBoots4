@@ -1,5 +1,5 @@
-import Graph.GraphExplorerBoard
-import Graph.Identity
+import Graph.Explorer.SquareBoard.GraphExplorerBoard
+import Graph.GraphIdentity
 import Graph.Player.Player
 import org.junit.Assert
 import org.junit.Test
@@ -51,10 +51,10 @@ class GraphExplorerBoardTest {
         tstData. playerGraph,
         tstData. inventoryGraph,
             tstData.graphBoard )
-        val activePlayer = Player(Identity(0))
+        val activePlayer = Player(GraphIdentity(0))
         world.add_player_to_world(activePlayer)
-        world.add_player_to_world(Player(Identity(1, 1)))
-        world.add_player_to_world(Player(Identity(2, 6)))
+        world.add_player_to_world(Player(GraphIdentity(1, 1)))
+        world.add_player_to_world(Player(GraphIdentity(2, 6)))
         val graphBoard = world.graphBoard;
         val playerLocationGraph = world.playerLocationGraph;
         val nearBy = graphBoard.getRange(activePlayer.who.blockId, 1);

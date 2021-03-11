@@ -1,5 +1,8 @@
-import Graph.Identity
+import Command.PlayerCommandType
+import Graph.GraphIdentity
 import Graph.Player.Player
+import Ticks.TickHandler
+import Ticks.TickMessage
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -14,9 +17,9 @@ class ShoutCommandTests {
             tstData. inventoryGraph,
             tstData.graphBoard )
         val t = TickHandler(world);
-        world.add_player_to_world(Player(Identity(0)))
-        world.add_player_to_world(Player(Identity(1, 1)))
-        val executedCommands = t.tick(listOf(PlayerMessage(PlayerCommandType.Shout, 0, 0)))
+        world.add_player_to_world(Player(GraphIdentity(0)))
+        world.add_player_to_world(Player(GraphIdentity(1, 1)))
+        val executedCommands = t.tick(listOf(TickMessage(PlayerCommandType.Shout, 0, 0)))
         assertEquals(executedCommands.size,1)
         val cmd = executedCommands[0];
         assertEquals(cmd.broadCasts.size,1)
@@ -34,10 +37,10 @@ class ShoutCommandTests {
             tstData. inventoryGraph,
             tstData.graphBoard )
         val t = TickHandler(world);
-        world.add_player_to_world(Player(Identity(0)))
-        world.add_player_to_world(Player(Identity(1, 1)))
-        world.add_player_to_world(Player(Identity(2, 12)))
-        val playerMessage = PlayerMessage(PlayerCommandType.Shout, 0, 0)
+        world.add_player_to_world(Player(GraphIdentity(0)))
+        world.add_player_to_world(Player(GraphIdentity(1, 1)))
+        world.add_player_to_world(Player(GraphIdentity(2, 12)))
+        val playerMessage = TickMessage(PlayerCommandType.Shout, 0, 0)
         val executedCommands = t.tick(listOf(playerMessage))
         assertEquals(executedCommands.size,1)
         val cmd = executedCommands[0];
