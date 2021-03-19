@@ -1,8 +1,9 @@
 package Graph
 
+import Graph.Graphable.Graphable
 import Graph.Mutators.GraphMutator
 
-class GraphNode<T : Graphable>(val Edges: MutableList<T>, private val insertMutator : GraphMutator<T>) {
+class GraphNode<T : Graphable>(val Edges: ArrayList<T>, private val insertMutator : GraphMutator<T>) {
 
     init {
         insertMutator.graphNode = this;

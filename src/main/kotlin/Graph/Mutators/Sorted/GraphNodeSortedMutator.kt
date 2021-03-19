@@ -1,7 +1,7 @@
 package Graph.Mutators.Sorted
 
 import Graph.GraphNode
-import Graph.Graphable
+import Graph.Graphable.Graphable
 import Graph.Mutators.GraphMutator
 
 class GraphNodeSortedMutator<T : Graphable>() : GraphMutator<T> {

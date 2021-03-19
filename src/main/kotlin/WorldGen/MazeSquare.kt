@@ -1,7 +1,7 @@
 package WorldGen
 
 import Graph.Graph
-import Graph.Graphable
+import Graph.Graphable.Graphable
 import Graph.GraphIdentity
 
 

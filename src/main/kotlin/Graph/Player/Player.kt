@@ -2,6 +2,8 @@ package Graph.Player
 
 import BroadCast
 import Graph.*
+import Graph.Graphable.BroadCastGraphable
+import Graph.Graphable.Graphable
 import Graph.Player.BroadCasts.NotEnoughActionPointsBroadCast
 import QueueDrainer
 
@@ -59,7 +61,7 @@ class PlayerCombatHandler(val player: Player) {
 
 }
 
-open class Player(override val who: GraphIdentity) : IPlayer, Graphable {
+open class Player(override val who: GraphIdentity) : IPlayer, BroadCastGraphable {
     override val broadCasts = QueueDrainer<BroadCast>()
     override val battleCommands = QueueDrainer<CombatCommand>()
     override val eventHandler by lazy { PlayerEventHandler(this) }

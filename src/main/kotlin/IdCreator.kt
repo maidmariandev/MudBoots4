@@ -1,6 +1,6 @@
 class IdCreator {
     private var idCounter: Int = 0;
-    fun get_next_global_id(): Int {
+    fun getNextId(): Int {
         synchronized(this) {
             return idCounter++;
         }

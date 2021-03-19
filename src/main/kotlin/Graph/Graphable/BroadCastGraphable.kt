@@ -1,10 +1,9 @@
-package Graph
+package Graph.Graphable
 
-;
+import Graph.GraphNode
+import Graph.UpdateEventData
 
-interface Graphable {
-    val who: GraphIdentity
-    fun getKey(KeyName: String): Int
+interface BroadCastGraphable : Graphable {
     fun keyChanges(KeyName: String, oldVal: Int,Reason:String): Int
 
 
@@ -25,5 +24,4 @@ interface Graphable {
     fun onGraphableLeavesBucket(updateEventData: UpdateEventData, bucket: GraphNode<Graphable>)
     fun onGraphableJoinsBucket(item: Graphable, updateEventData: UpdateEventData)
     fun onGraphableLeavesBucket(item: Graphable, updateEventData: UpdateEventData)
-
 }

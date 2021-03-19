@@ -1,4 +1,5 @@
 import Graph.*
+import Graph.Graphable.Graphable
 import Graph.Player.Player
 
 class Inventory(override val who: GraphIdentity, val p1: Player) : Graphable {

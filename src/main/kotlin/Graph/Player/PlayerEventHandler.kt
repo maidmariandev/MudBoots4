@@ -2,7 +2,7 @@ package Graph.Player
 
 import BroadCast
 import Graph.GraphNode
-import Graph.Graphable
+import Graph.Graphable.Graphable
 import Graph.UpdateEventData
 
 class PlayerEventHandler(val player: Player) {
