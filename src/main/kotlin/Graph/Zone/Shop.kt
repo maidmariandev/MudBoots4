@@ -1,20 +1,11 @@
-package Graph
+package Graph.Zone
 
-import Graph.Explorer.GraphExplorer
 import Graph.Explorer.SquareBoard.GraphExplorerBoard
 import Graph.Player.Player
-import World
-
+import Graph.Player.PlayerGraph
 
 class Shop(playerGraph: PlayerGraph, graphExplorer: GraphExplorerBoard) : World(graphExplorer)  {
 
     lateinit var townOwner: Player
-
-}
-
-class Town(playerGraph: PlayerGraph, graphExplorer: GraphExplorerBoard) : World(graphExplorer)  {
-
-    lateinit var townOwner: Player
-
 
 }

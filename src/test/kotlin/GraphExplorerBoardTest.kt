@@ -1,6 +1,7 @@
 import Graph.Explorer.SquareBoard.GraphExplorerBoard
 import Graph.GraphIdentity
 import Graph.Player.Player
+import Graph.Zone.World
 import org.junit.Assert
 import org.junit.Test
 
@@ -43,24 +44,7 @@ class GraphExplorerBoardTest {
         println("")
     }
 
-    @Test
-    fun testGet_range_test() {
-        val tstData = worldTestsGenerator();
 
-        val world = World( tstData.playerLocationGraph,
-        tstData. playerGraph,
-        tstData. inventoryGraph,
-            tstData.graphBoard )
-        val activePlayer = Player(GraphIdentity(0))
-        world.add_player_to_world(activePlayer)
-        world.add_player_to_world(Player(GraphIdentity(1, 1)))
-        world.add_player_to_world(Player(GraphIdentity(2, 6)))
-        val graphBoard = world.graphBoard;
-        val playerLocationGraph = world.playerLocationGraph;
-        val nearBy = graphBoard.getRange(activePlayer.who.blockId, 1);
-        val playersNearby = nearBy.translate(playerLocationGraph); //translate keys to graph edges with direction
-
-    }
 
     @Test
     fun testGet_above_range() {
@@ -94,62 +78,33 @@ class GraphExplorerBoardTest {
 
     @Test
     fun testGet_down_right_range() {
-        var output = GraphExplorerBoard(6, 3).getDownRightRange(17, 3);
-        draw_grid(6, 3, 17, output);
-        println(output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(10, 3))
-        output = GraphExplorerBoard(6, 3).getDownRightRange(12, 3);
-        draw_grid(6, 3, 12, output);
-        println(output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf())
+
 
     }
 
     @Test
     fun testGet_right_range() {
-        var output = GraphExplorerBoard(6, 3).getRightRange(5, 3);
-        draw_grid(6, 3, 5, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(4, 3, 2))
-        output = GraphExplorerBoard(6, 3).getRightRange(5, 12);
-        draw_grid(6, 3, 5, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(4, 3, 2, 1, 0))
+
     }
 
     @Test
     fun testGet_up_left_range() {
-        var output = GraphExplorerBoard(6, 3).getUpLeftRange(2, 3);
-        draw_grid(6, 3, 2, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(9, 16))
-        output = GraphExplorerBoard(6, 3).getUpLeftRange(8, 13);
-        draw_grid(6, 3, 8, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(15));
+
     }
 
     @Test
     fun testGet_down_left_range() {
-        var output = GraphExplorerBoard(6, 3).getDownLeftRange(12, 3);
-        draw_grid(6, 3, 12, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(7, 2))
-        output = GraphExplorerBoard(6, 3).getDownLeftRange(17, 3);
-        draw_grid(6, 3, 17, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf())
+
     }
 
     @Test
     fun testGet_left_range() {
-        var output = GraphExplorerBoard(6, 3).getLeftRange(2, 3);
-        draw_grid(6, 3, 2, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(3, 4, 5))
-        output = GraphExplorerBoard(6, 3).getLeftRange(2, 13);
-        draw_grid(6, 3, 2, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(3, 4, 5));
+
     }
 
     @Test
     fun testGet_down_range() {
-        val output = GraphExplorerBoard(6, 3).getDownRange(12, 3);
-        draw_grid(6, 3, 12, output);
-        Assert.assertArrayEquals(output.toArray(), arrayOf(6, 0))
+
 
     }
 

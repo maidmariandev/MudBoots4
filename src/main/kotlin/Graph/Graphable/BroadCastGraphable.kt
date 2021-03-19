@@ -4,7 +4,11 @@ import Graph.GraphNode
 import Graph.UpdateEventData
 
 interface BroadCastGraphable : Graphable {
-    fun keyChanges(KeyName: String, oldVal: Int,Reason:String): Int
+    companion object {
+        val playerEnteringGraphFlag = -1
+        val playerExitingGraphFlag = -3
+    }
+    fun keyChanges(KeyName: String, oldVal: Int,Reason:String, IgnoreDupes : Boolean = false): Int
 
 
     val callbacks: ArrayList<Pair<Int, (UpdateEventData) -> Int>>

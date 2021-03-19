@@ -1,8 +1,8 @@
-import Graph.Graph
+import Graph.Explorer.SquareBoard.GraphExplorerBoard
 import Graph.GraphIdentity
-import Graph.GraphNode
 import Graph.Player.InsertKeyForPlayers
 import Graph.Player.Player
+import Graph.Zone.World
 import org.junit.Test
 
 import kotlin.test.assertEquals
@@ -13,13 +13,9 @@ import kotlin.test.assertNull
 class WorldGraphTests{
     @Test
     fun testGetPlayerByDiscordId(){
-        val tstData = worldTestsGenerator();
 
-        val world = World(
 
-            tstData. playerGraph,
-            tstData. inventoryGraph,
-            tstData.graphBoard )
+        val world = World(GraphExplorerBoard(6,6,) )
         val player1Identy = GraphIdentity(0)
         val p = Player(player1Identy)
         world.add_player_to_world(p)

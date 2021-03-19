@@ -14,25 +14,25 @@ class PlayerEventHandler(val player: Player) {
     fun onPlayerEntersCombat(otherPlayers: List<Player>) {
         val formatString = otherPlayers.joinToString { it.who._id.toString() }
         with(player) {
-            broadCasts.addBroadCast(BroadCast("$formatString begin their attack."))
+            addBroadCast(BroadCast("$formatString begin their attack."))
         }
     }
 
     fun onPlayerLeavesCombat(otherPlayers: List<Player>,combatResultFlags :CombatResultFlag) {
         with(player) {
-            broadCasts.addBroadCast(BroadCast("You escape combat."))
+            addBroadCast(BroadCast("You escape combat."))
         }
     }
 
     fun onOtherPlayerEntersTitle(otherPlayer: Player, eventData: UpdateEventData) {
         with(player) {
-            broadCasts.addBroadCast(BroadCast("${player.who._id} enters the room, stinking of a fresh kill."))
+            addBroadCast(BroadCast("${player.who._id} enters the room, stinking of a fresh kill."))
         }
     }
 
     fun onPlayerLeavesTile(otherPlayer: Player, eventData: UpdateEventData) {
         with(player) {
-            broadCasts.addBroadCast(BroadCast("${player.who._id} leaves the room."))
+            addBroadCast(BroadCast("${player.who._id} leaves the room."))
         }
     }
 
@@ -40,7 +40,7 @@ class PlayerEventHandler(val player: Player) {
         val playersInRoom = bucket.Edges
         val formatString = playersInRoom.joinToString { it.who._id.toString() }
         with(player) {
-            broadCasts.addBroadCast(BroadCast("You See $formatString"))
+            addBroadCast(BroadCast("You See $formatString"))
         }
     }
 }

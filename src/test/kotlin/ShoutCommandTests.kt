@@ -1,6 +1,7 @@
 import Command.PlayerCommandType
 import Graph.GraphIdentity
 import Graph.Player.Player
+import Graph.Zone.World
 import Ticks.TickHandler
 import Ticks.TickMessage
 import org.junit.Test

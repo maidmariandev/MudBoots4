@@ -1,22 +1,11 @@
-import Graph.*
+package Graph.Zone
+
+import Graph.Exit.Exit
+import Graph.Exit.ExitGraph
 import Graph.Explorer.SquareBoard.GraphExplorerBoard
-import Graph.Graphable.Graphable
 import Graph.Player.Player
+import Graph.Player.PlayerGraph
 
-
-class Exit(override val who: GraphIdentity, val exitText: String) : Graphable {
-
-
-    override fun getKey(KeyName: String): Int {
-        TODO("Not yet implemented")
-    }
-
-
-}
-
-class ExitGraph(Nodes: HashMap<String, List<GraphNode<Exit>>>) : Graph<Exit>(Nodes) {
-
-}
 
 open class World(
     var graphBoard: GraphExplorerBoard

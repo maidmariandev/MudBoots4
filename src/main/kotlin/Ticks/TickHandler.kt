@@ -6,7 +6,7 @@ import Command.PlayerCommandType
 import Command.Shout.ShoutCommand
 import CommandResponse
 import Graph.GraphIdentity
-import World
+import Graph.Zone.World
 
 class TickHandler(val world: World) {
     fun tick(tickQueue: List<TickMessage>) : List<CommandResponse> {
@@ -17,7 +17,7 @@ class TickHandler(val world: World) {
     private fun handleCommand(message: TickMessage): CommandRequest {
 
         val playerGraph = world.playerGraph
-        val activePlayer = playerGraph.get(GraphIdentity(message.discordID));
+        val activePlayer = playerGraph.getByIdentity(GraphIdentity(message.discordID));
         if (activePlayer == null) {
             println("Can not find player");
             return NoSuchPlayercommandRequest()

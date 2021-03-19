@@ -1,9 +1,7 @@
 import Graph.Graph
 import Graph.Explorer.SquareBoard.GraphExplorerBoard
 import Graph.GraphIdentity
-import Graph.GraphNode
-import Graph.Player.Player
-import Graph.PlayerGraph
+import Graph.Player.PlayerGraph
 
 class test{}
 

@@ -1,6 +1,21 @@
 package Graph.Explorer.SquareBoard
 
 class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
+    companion object {
+        fun invertDirection(location: GraphExplorerBoardDirection): String {
+            return when (location) {
+                GraphExplorerBoardDirection.Up -> "south"
+                GraphExplorerBoardDirection.Down -> "north"
+                GraphExplorerBoardDirection.UpRight -> "southwest"
+                GraphExplorerBoardDirection.Right -> "west"
+                GraphExplorerBoardDirection.Left -> "east"
+                GraphExplorerBoardDirection.DownLeft -> "northeast"
+                GraphExplorerBoardDirection.DownRight -> "northwest"
+                GraphExplorerBoardDirection.UpLeft -> "southeast"
+            }
+
+        }
+    }
 
     fun getAboveRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
@@ -9,14 +24,15 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         var end = i;
         val LastRowTop = squareMax
 
-        while (end-- >0 ) {
+        while (end-- > 0) {
             start += squareSize;
-            if(start >LastRowTop) break;
+            if (start > LastRowTop) break;
             indexes.add(start)
         }
 
         return indexes;
     }
+
     fun getUpLeftRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
@@ -24,14 +40,14 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         var start = indx;
 
 
-        while (end-- >0  ) {
+        while (end-- > 0) {
             val LastRowTop = squareMax
 
             start += squareSize;
-            if(LastRowTop < start) break;
-            val lastRowLeft = start + (squareSize - (start % squareSize)) -1;
-            start +=1;
-            if(lastRowLeft < start) {
+            if (LastRowTop < start) break;
+            val lastRowLeft = start + (squareSize - (start % squareSize)) - 1;
+            start += 1;
+            if (lastRowLeft < start) {
                 break
             }
             indexes.add(start)
@@ -39,6 +55,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
         return indexes;
     }
+
     fun getDownLeftRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
@@ -46,15 +63,15 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         var start = indx;
 
 
-        while (end-- >0  ) {
+        while (end-- > 0) {
             val lastrowbottom = (squareSize - (squareSize - (start % squareSize)))
-            start -= squareSize ;
-            if(start < lastrowbottom){
+            start -= squareSize;
+            if (start < lastrowbottom) {
                 break;
             }
-            val lastRowLeft = start + (squareSize - (start % squareSize)) -1;
-            start +=1;
-            if(lastRowLeft < start) {
+            val lastRowLeft = start + (squareSize - (start % squareSize)) - 1;
+            start += 1;
+            if (lastRowLeft < start) {
                 break
             }
             indexes.add(start)
@@ -62,6 +79,7 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
         return indexes;
     }
+
     fun getUpRightRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
@@ -69,14 +87,14 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         var start = indx;
 
 
-        while (end-- >0  ) {
+        while (end-- > 0) {
             val LastRowTop = squareMax
 
             start += squareSize;
-            if(LastRowTop < start) break;
+            if (LastRowTop < start) break;
             val LastRowRight = start - (start % squareSize)
-            start -=1;
-            if(LastRowRight > start) {
+            start -= 1;
+            if (LastRowRight > start) {
                 break
             }
             indexes.add(start)
@@ -89,12 +107,12 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         val indexes = arrayListOf<Int>()
 
 
-        var start = indx  ;
+        var start = indx;
         val LastRowRight = start - (start % squareSize)
         var end = i;
-        while (end-- >0 && start > LastRowRight ) {
+        while (end-- > 0 && start > LastRowRight) {
 
-            start -=1;
+            start -= 1;
             indexes.add(start)
         }
         return indexes;
@@ -107,9 +125,9 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         var end = i;
         val lastrowbottom = (squareSize - (squareSize - (start % squareSize)))
 
-        while (end-- >0  ) {
+        while (end-- > 0) {
             start -= squareSize;
-            if(start < lastrowbottom) break;
+            if (start < lastrowbottom) break;
             indexes.add(start)
         }
 
@@ -122,15 +140,15 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         var start = indx;
         var end = i;
 
-        while (end-- >0 ) {
+        while (end-- > 0) {
             val lastrowbottom = (squareSize - (squareSize - (start % squareSize)))
-            start -= squareSize ;
-            if(start < lastrowbottom){
+            start -= squareSize;
+            if (start < lastrowbottom) {
                 break;
             }
             val LastRowRight = start - (start % squareSize)
-            start -=1;
-            if(LastRowRight > start) {
+            start -= 1;
+            if (LastRowRight > start) {
                 break
             }
 
@@ -139,16 +157,17 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
 
         return indexes;
     }
+
     fun getLeftRange(indx: Int, i: Int): ArrayList<Int> {
         val indexes = arrayListOf<Int>()
 
 
-        var start = indx  ;
-        val lastRowLeft = start + (squareSize - (start % squareSize)) -1;
+        var start = indx;
+        val lastRowLeft = start + (squareSize - (start % squareSize)) - 1;
         var end = i;
-        while (end-- >0 && start < lastRowLeft ) {
+        while (end-- > 0 && start < lastRowLeft) {
 
-            start +=1;
+            start += 1;
             indexes.add(start)
         }
         return indexes;
@@ -162,11 +181,11 @@ class GraphExplorerBoard(val squareSize: Int, val maxRows: Int) {
         val left = getLeftRange(center, i);
         val right = getRightRange(center, i);
         val topright = getUpRightRange(center, i);
-        val downright = getDownRightRange(center,i);
-        val below = getDownRange(center,i);
-        val downleft = getDownLeftRange(center,i);
-        val topleft = getUpLeftRange(center,i);
-        return GraphExplorerBoardDirectionList(above,topright,right,downright,below,downleft,left,topleft);
+        val downright = getDownRightRange(center, i);
+        val below = getDownRange(center, i);
+        val downleft = getDownLeftRange(center, i);
+        val topleft = getUpLeftRange(center, i);
+        return GraphExplorerBoardDirectionList(above, topright, right, downright, below, downleft, left, topleft);
     }
 
 

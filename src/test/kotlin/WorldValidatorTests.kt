@@ -1,16 +1,14 @@
+import Graph.Explorer.SquareBoard.GraphExplorerBoard
+import Graph.Zone.World
 import Ticks.TickHandler
 import org.junit.Test
 
 class WorldValidatorTests {
     @Test
     fun testEmptyTick() {
-        val tstData = worldTestsGenerator();
 
-        val world = World(tstData.
-        playerLocationGraph,
-            tstData. playerGraph,
-            tstData. inventoryGraph,
-            tstData.graphBoard )
+
+        val world = World(GraphExplorerBoard(6,6,) )
         val t  = TickHandler(world);
         t.tick(listOf())
     }

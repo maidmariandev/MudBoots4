@@ -1,10 +1,12 @@
 package Graph.Player
 
 import BroadCast
-import Graph.*
+import Graph.GraphIdentity
+import Graph.GraphNode
 import Graph.Graphable.BroadCastGraphable
 import Graph.Graphable.Graphable
-import Graph.Player.BroadCasts.NotEnoughActionPointsBroadCast
+import Graph.NoSuchKeyError
+import Graph.UpdateEventData
 import QueueDrainer
 
 val InsertKeyForPlayers: (obj: GraphIdentity) -> Int = { i ->
@@ -23,42 +25,6 @@ class CombatCommandCostCalculator {
 class CombatCommand {
     val requiredActionPoints = 1
     val actionName = "<not set>"
-}
-
-class PlayerCombatHandler(val player: Player) {
-
-    fun combatHandler(Combatants: List<Player>) {
-        if (Combatants.isEmpty()) return;
-        with(player) {
-            val commandsPerTurn = playerStats.playerCombatStats.commandsPerTurn
-
-            var takeSize = commandsPerTurn;
-            if (Combatants.size < commandsPerTurn) {
-                takeSize = Combatants.size;
-            }
-            val cmdlist = battleCommands.drainBroadCasts(commandsPerTurn);
-            if (cmdlist.isEmpty()) return;
-            for ((index, cmd) in cmdlist.withIndex()) {
-                if (playerStats.playerCombatStats.remainingActionPoints > cmd.requiredActionPoints) {
-                    continue;
-                }
-                tradeBlows(cmd, Combatants[index]);
-            }
-            keyChanges(Player.PlayerGraphKeys.ActiveBroadCast.toString(), -2, "Broadcast Dispatched") // so all we have to do is look in the dirty bucket
-        }
-    }
-
-    private fun tradeBlows(cmd: CombatCommand, otherplayer: Player) {
-        with(player) {
-            broadCasts.addBroadCast(NotEnoughActionPointsBroadCast(cmd.actionName))
-        }
-        otherplayer.playerStats.applyCombatCommand(cmd)
-        val formatString =
-            "${player.who._id}'s weak attack tickles ${player.who._id}" // cmd.formatBroadCast(player,otherplayer);
-        otherplayer.broadCasts.addBroadCast(BroadCast(formatString))
-        otherplayer.keyChanges(Player.PlayerGraphKeys.ActiveBroadCast.toString(), -2, "Broadcast Dispatched") // so all we have to do is look in the dirty bucket
-    }
-
 }
 
 open class Player(override val who: GraphIdentity) : IPlayer, BroadCastGraphable {
@@ -81,6 +47,9 @@ open class Player(override val who: GraphIdentity) : IPlayer, BroadCastGraphable
         LookUp,
         ActiveBroadCast
     }
+    fun updateHasBroadCasts(){
+        keyChanges(Player.PlayerGraphKeys.ActiveBroadCast.toString(), -2, "Broadcast Dispatched",true)
+    }
 
     fun getKey(Key: PlayerGraphKeys): Int {
         return when (Key) {
@@ -96,11 +65,11 @@ open class Player(override val who: GraphIdentity) : IPlayer, BroadCastGraphable
         keyChanges(PlayerGraphKeys.Location.toString(), OldBlock, PlayerUpdateReasons.CommandMove.toString());
     }
 
-    override fun keyChanges(KeyName: String, oldVal: Int, Reason: String): Int {
+    override fun keyChanges(KeyName: String, oldVal: Int, Reason: String, IgnoreDupes : Boolean): Int {
         when (PlayerGraphKeys.valueOf(KeyName)) {
             PlayerGraphKeys.Location ->
                 getallCallBacks().forEach {
-                    it(UpdateEventData(KeyName, oldVal, InsertKeyForPlayerLocation(who), Reason))
+                    it(UpdateEventData(KeyName, oldVal, InsertKeyForPlayerLocation(who), Reason,IgnoreDupes))
                 }
             PlayerGraphKeys.LookUp -> TODO()
         }
@@ -119,7 +88,8 @@ open class Player(override val who: GraphIdentity) : IPlayer, BroadCastGraphable
                 when (Reason) {
                     PlayerUpdateReasons.CommandMove -> {
 
-                        broadCasts.addBroadCast(BroadCast("""${player.who._id} Leaves"""))
+                        addBroadCast(BroadCast("""${player.who._id} Leaves"""))
+
                     }
                 }
             }
@@ -177,6 +147,11 @@ open class Player(override val who: GraphIdentity) : IPlayer, BroadCastGraphable
             PlayerGraphKeys.ActiveBroadCast -> TODO() //Notify object that broadcasts were sent.
         }
 
+    }
+
+    fun addBroadCast(broadCast: BroadCast) {
+        broadCasts.addBroadCast(broadCast)
+        updateHasBroadCasts() // so all we have to do is look in the dirty bucket
     }
 }
 

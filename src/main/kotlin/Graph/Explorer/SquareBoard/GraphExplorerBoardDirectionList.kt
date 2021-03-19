@@ -13,27 +13,28 @@ class GraphExplorerBoardDirectionList(
     private val left: List<Int>,
     private val top_left: List<Int>
 ) {
-    fun <T : Graphable> translate(locGraph: Graph<T>): List<GraphExplorerBoardDirectionResult<T>> {
-        val lst = mutableListOf<GraphExplorerBoardDirectionResult<T>>()
-        addItemsFromNodeToList(above, locGraph, lst, GraphExplorerBoardDirection.Up)
-        addItemsFromNodeToList(top_right, locGraph, lst, GraphExplorerBoardDirection.UpRight)
-        addItemsFromNodeToList(right, locGraph, lst, GraphExplorerBoardDirection.Right)
-        addItemsFromNodeToList(down_right, locGraph, lst, GraphExplorerBoardDirection.DownRight)
-        addItemsFromNodeToList(below, locGraph, lst, GraphExplorerBoardDirection.Down)
-        addItemsFromNodeToList(down_left, locGraph, lst, GraphExplorerBoardDirection.DownLeft)
-        addItemsFromNodeToList(left, locGraph, lst, GraphExplorerBoardDirection.Left)
-        addItemsFromNodeToList(top_left, locGraph, lst, GraphExplorerBoardDirection.UpLeft)
-       return lst;
+    fun <T : Graphable> translate(locGraph: Graph<T>, graphKey: String): List<GraphExplorerBoardDirectionResult<T>> {
+        val lst = arrayListOf<GraphExplorerBoardDirectionResult<T>>()
+        addItemsFromNodeToList(above, locGraph, lst, GraphExplorerBoardDirection.Up, graphKey)
+        addItemsFromNodeToList(top_right, locGraph, lst, GraphExplorerBoardDirection.UpRight, graphKey)
+        addItemsFromNodeToList(right, locGraph, lst, GraphExplorerBoardDirection.Right, graphKey)
+        addItemsFromNodeToList(down_right, locGraph, lst, GraphExplorerBoardDirection.DownRight, graphKey)
+        addItemsFromNodeToList(below, locGraph, lst, GraphExplorerBoardDirection.Down, graphKey)
+        addItemsFromNodeToList(down_left, locGraph, lst, GraphExplorerBoardDirection.DownLeft, graphKey)
+        addItemsFromNodeToList(left, locGraph, lst, GraphExplorerBoardDirection.Left, graphKey)
+        addItemsFromNodeToList(top_left, locGraph, lst, GraphExplorerBoardDirection.UpLeft, graphKey)
+        return lst;
     }
 
     private fun <T : Graphable> addItemsFromNodeToList(
         src: List<Int>,
         locGraph: Graph<T>,
-        lst: MutableList<GraphExplorerBoardDirectionResult<T>>,
-        direction: GraphExplorerBoardDirection
+        lst: ArrayList<GraphExplorerBoardDirectionResult<T>>,
+        direction: GraphExplorerBoardDirection,
+        graphKey: String
     ) {
         for (i in src) {
-            val players = locGraph.getNodesAt(i);
+            val players = locGraph.getNodesAt(i, graphKey);
 
             for (j in players) {
                 lst.add(GraphExplorerBoardDirectionResult(direction, j))
