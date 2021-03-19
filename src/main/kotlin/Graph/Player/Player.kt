@@ -54,7 +54,7 @@ class PlayerCombatHandler(val player: Player) {
         val formatString =
             "${player.who._id}'s weak attack tickles ${player.who._id}" // cmd.formatBroadCast(player,otherplayer);
         otherplayer.broadCasts.addBroadCast(BroadCast(formatString))
-        player.keyChanges(Player.PlayerGraphKeys.ActiveBroadCast.toString(), -2, "Broadcast Dispatched") // so all we have to do is look in the dirty bucket
+        otherplayer.keyChanges(Player.PlayerGraphKeys.ActiveBroadCast.toString(), -2, "Broadcast Dispatched") // so all we have to do is look in the dirty bucket
     }
 
 }
