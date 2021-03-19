@@ -1,7 +1,9 @@
 import Graph.Graph
 import Graph.Explorer.SquareBoard.GraphExplorerBoard
 import Graph.GraphIdentity
+import Graph.GraphNode
 import Graph.Player.Player
+import Graph.PlayerGraph
 
 class test{}
 
@@ -16,19 +18,16 @@ fun worldTestsGenerator(): TestData {
     val InsertKeyForPlayerLocation: (obj: GraphIdentity) -> Int = { i ->
         i.blockId
     }
-    val  playerGraph = Graph<Player>(MutableList(8000) { i -> createList(i) }, InsertKeyForPlayers, null, null);
-    val  inventoryGraph = Graph<Inventory>(MutableList(8000) { i -> createList(i) }, InsertKeyInv, null, null);
-    val  playerLocationGraph =
-        Graph<Player>(MutableList(8000) { i -> createList(i) }, InsertKeyForPlayerLocation, null, null);
-    val  graphBoard = GraphExplorerBoard(12, 12);
-    return TestData(playerGraph,inventoryGraph,graphBoard,playerLocationGraph)
+    val  playerGraph = PlayerGraph(HashMap())
+    val  inventoryGraph = Graph<Inventory>(HashMap());
+     val  graphBoard = GraphExplorerBoard(12, 12);
+    return TestData(playerGraph,inventoryGraph,graphBoard )
 }
 
 class TestData(
-    val playerGraph: Graph<Player>,
+    val playerGraph: PlayerGraph,
     val inventoryGraph: Graph<Inventory>,
-    val graphBoard: GraphExplorerBoard,
-    val playerLocationGraph: Graph<Player>
+    val graphBoard: GraphExplorerBoard
 ) {
 
 }

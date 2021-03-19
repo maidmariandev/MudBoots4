@@ -7,12 +7,19 @@ class GraphNode<T : Graphable>(val Edges: MutableList<T>, private val insertMuta
     init {
         insertMutator.graphNode = this;
     }
-
+    fun remove(t:T) :T {
+        return t;
+    }
     fun insert(t:T) : T{
         return insertMutator.insert(t);
     }
     fun get(ident : GraphIdentity) : T?{
         return Edges.firstOrNull { it.who._id == ident._id }
+    }
+
+    fun get(ident: Long) : T? {
+
+        return Edges.firstOrNull { it.who._id == ident }
     }
 
 

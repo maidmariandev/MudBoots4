@@ -9,9 +9,9 @@ class GraphIdentity(val _id: Long, private var _blockId: Int = 0, private var _w
         return blockId + rowSize <= maxRows * rowSize
 
     }
-    fun Move(block: Int, world: Int) {
+    fun Move(block: Int ) {
         _blockId = block;
-        _worldId = world;
+
     }
 
 }

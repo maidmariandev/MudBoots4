@@ -1,44 +1,64 @@
 package Graph
 
-class Graph<T : Graphable>(
-    private val Nodes: List<GraphNode<T>>,
-    val InsertKey: (obj: GraphIdentity) -> Int,
-    private val Add_Item: ((obj: T, graph: Graph<T>) -> T)?,
-    private val Remove_Item: ((obj: T, graph: Graph<T>) -> T)?
+open class Graph<T : Graphable>(
+    private val Nodes: HashMap<String, List<GraphNode<T>>>,
+
 ) {
-    init {
 
-    }
 
-    fun flatten(): List<T> = Nodes.flatMap { i -> i.Edges }
-
-    fun add(t: T): T {
-        val key = InsertKey(t.who);
-        val Node = Nodes[key];
-        return if (Add_Item == null) {
-            Node.insert(t);
-            t;
-        } else {
-            Add_Item?.invoke(t, this);
+    protected fun update(j: T, updateEventData: UpdateEventData): Int {
+        val keyName = updateEventData.KeyName
+        val oldKey = updateEventData.OldKey
+        if (oldKey > 0) {
+            val OldNode = removeNodeItem(keyName, oldKey, j)
+            j.onGraphableLeavesBucket(updateEventData, OldNode as GraphNode<Graphable>);
+            for (edge in OldNode.Edges) {
+                edge.onGraphableLeavesBucket(j, updateEventData)
+            }
         }
+        val NewNode = Nodes[keyName]?.get(updateEventData.NewKey) ?: throw NoSuchKeyError();
+
+        //old key -2 means we are shoving a bunch into a bucket perhaps more than once and to skip re-adding
+        if (updateEventData.DuplicateCheck && NewNode.Edges.find { it.who._id == j.who._id } != null) {
+            return updateEventData.NewKey;
+        }
+        NewNode.insert(j);
+        j.onGraphableJoinsBucket(updateEventData, NewNode as GraphNode<Graphable>)
+        for (edge in NewNode.Edges) {
+            edge.onGraphableJoinsBucket(j, updateEventData)
+        }
+        return 0; // return updated nodes count
     }
 
-    fun getIds(i: Int): List<Long> {
-        return Nodes[i].Edges.map { i -> i.who._id };
+    private fun removeNodeItem(keyName: String, oldKey: Int, j: T): GraphNode<T> {
+        val OldNode = Nodes[keyName]?.get(oldKey) ?: throw NoSuchKeyError();
+        OldNode.remove(j);
+        return OldNode
     }
 
-    fun get(identId: GraphIdentity): T? {
-        val key = InsertKey(identId);
-        val graphNode = Nodes[key];
-        return graphNode.get(identId);
+    fun add(t: T, KeyName: String, key: Int): T {
+        t.addCallBackk({ j -> update(t, j) }, 0)
+        update(t, UpdateEventData(KeyName, -1, key, "Insertion"))
+        return t;
 
     }
 
-    fun getNodesAt(range: Int): List<T> {
-        return Nodes[range].Edges;
+    private fun getNode(KeyName: String, key: Int): GraphNode<T> {
+        return Nodes[KeyName]?.get(key) ?: throw NoSuchKeyError()
 
+    }
 
+    fun get(identId: GraphIdentity, KeyName: String, key: Int): T? {
+        val Node = Nodes[KeyName]?.get(key) ?: throw NoSuchKeyError();
+        return Node.get(identId);
+
+    }
+
+    fun getNodesAt(range: Int, KeyName: String): List<T> {
+        val Node = Nodes[KeyName]?.get(range) ?: throw NoSuchKeyError();
+        return Node.Edges;
     }
 
 
 }
+
